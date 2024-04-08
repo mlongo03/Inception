@@ -7,6 +7,6 @@ RUN apt update \
  && apt install curl -y
 
 COPY conf/50-server.cnf	/etc/mysql/mariadb.conf.d/50-server.cnf
-COPY mariadb.sh	/etc/mysql/mariadb.sh
+COPY conf/mariadb.sh	/etc/mysql/mariadb.sh
 
 CMD [ "/etc/mariadb/mariadb.sh" ]
