@@ -9,13 +9,17 @@ RUN apt update \
  php-fpm \
  php-mysql \
  mariadb-client \
- && wget https://wordpress.org/wordpress-6.5.tar.gz -P /var/www \
- && cd /var/www/ && tar -xzf wordpress-6.5.tar.gz && rm /var/www/wordpress-6.5.tar.gz \
- && chown -R root:root /var/www/wordpress \
+#  && wget https://wordpress.org/wordpress-6.5.tar.gz -P /var/www \
+#  && cd /var/www/ && tar -xzf wordpress-6.5.tar.gz && rm /var/www/wordpress-6.5.tar.gz \
+#  && chown -R root:root /var/www/wordpress \
  && wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
  && chmod +x wp-cli.phar \
  && mv wp-cli.phar /usr/local/bin/wp
 
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
-CMD [ "php-fpm7.4", "-F" ]
+COPY /conf/wp-config.php /
+
+COPY /tools/auto_config.sh /
+
+# CMD [ "/auto_config.sh", ]
