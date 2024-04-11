@@ -22,4 +22,4 @@ COPY /conf/wp-config.php /
 
 COPY /tools/auto_config.sh /
 
-# CMD [ "/auto_config.sh", ]
+CMD [ "/auto_config.sh", ]
