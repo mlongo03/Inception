@@ -3,15 +3,19 @@ all : up
 
 clean : down
 
-re : down up
+re : down vclean up
+
+reboot : down up
+
+vclean:
+	@sudo rm -rf /home/manuele/data/wordpress/*
+	@sudo rm -rf /home/manuele/data/mariadb/*
 
 up:
 	@sudo docker-compose -f srcs/docker-compose.yml up -d --build
 
 down:
 	@sudo docker-compose -f srcs/docker-compose.yml down -v --rmi all
-	@sudo rm -rf /home/manuele/data/wordpress/*
-	@sudo rm -rf /home/manuele/data/mariadb/*
 
 stop:
 	@sudo docker-compose -f srcs/docker-compose.yml stop
