@@ -15,8 +15,8 @@ RUN apt update \
 
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY /conf/wp-config.php /
-COPY /tools/auto_config.sh /
+COPY /tools/wordpress.sh /
 
-RUN chmod +x /auto_config.sh
+RUN chmod +x /wordpress.sh
 
-CMD [ "/auto_config.sh" ]
+CMD [ "/wordpress.sh" ]
