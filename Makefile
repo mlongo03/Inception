@@ -3,11 +3,11 @@ all : up
 
 clean : down
 
-re : down vclean up
+re : vclean up
 
 reboot : down up
 
-vclean:
+vclean: down
 	@sudo rm -rf /home/manuele/data/wordpress/*
 	@sudo rm -rf /home/manuele/data/mariadb/*
 
