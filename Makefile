@@ -30,8 +30,15 @@ up:
 	echo SQL_ROOT_PASSWORD=1234 >> srcs/.env; \
 	fi
 	echo USERDOCKER=${USER} >> srcs/.env
-	@if [! -d /home/${USER}/data]; then \
+	@if [ ! -d /home/${USER}/data ]; then \
+	mkdir /home/${USER}/data; \
 	mkdir /home/${USER}/data/wordpress; \
+	mkdir /home/${USER}/data/mariadb; \
+	fi
+	@if [ ! -d /home/${USER}/data/wordpress ]; then \
+	mkdir /home/${USER}/data/wordpress; \
+	fi
+	@if [ ! -d /home/${USER}/data/mariadb ]; then \
 	mkdir /home/${USER}/data/mariadb; \
 	fi
 	@sudo docker-compose -f srcs/docker-compose.yml up -d --build
