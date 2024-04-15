@@ -12,6 +12,7 @@ vclean: down
 	@sudo rm -rf /home/manuele/data/mariadb/*
 
 up:
+	@export USERDOCKER=$USER
 	@if [ ! -f srcs/.env ]; then \
 	touch srcs/.env ; \
 	echo DOMAIN_NAME=mlongo.42.fr >> srcs/.env; \
