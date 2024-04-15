@@ -15,23 +15,23 @@ up:
 	@if [ ! -f srcs/.env ]; then \
 	touch srcs/.env ; \
 	echo DOMAIN_NAME=mlongo.42.fr >> srcs/.env; \
-	echo CERTS_=/etc/nginx/ssl/inception.crt >> srcs/.env \
-	echo CERTS_2=\/etc\/nginx\/ssl\/inception.crt >> srcs/.env \
-	echo KEYS_=/etc/nginx/ssl/inception.key >> srcs/.env \
-	echo KEYS_2=\/etc\/nginx\/ssl\/inception.key >> srcs/.env \
-	echo WP_TITLE=MlongoWP >> srcs/.env \
-	echo WP_ADMIN_USR=mlongo >> srcs/.env \
-	echo WP_ADMIN_PWD=1234 >> srcs/.env \
-	echo WP_ADMIN_EMAIL=manuelelng03@gmail.com >> srcs/.env \
-	echo WP_USR=mlongo2 >> srcs/.env \
-	echo WP_EMAIL=mlongo@student.42roma.it >> srcs/.env \
-	echo WP_PWD=123 >> srcs/.env \
-	echo db_name=maria >> srcs/.env \
-	echo db_user=ss >> srcs/.env \
-	echo db_pwd=tt >> srcs/.env \
-	echo SQL_ROOT_PASSWORD=1234 >> srcs/.env \
+	echo CERTS_=/etc/nginx/ssl/inception.crt >> srcs/.env; \
+	echo CERTS_2=\/etc\/nginx\/ssl\/inception.crt >> srcs/.env; \
+	echo KEYS_=/etc/nginx/ssl/inception.key >> srcs/.env; \
+	echo KEYS_2=\/etc\/nginx\/ssl\/inception.key >> srcs/.env; \
+	echo WP_TITLE=MlongoWP >> srcs/.env; \
+	echo WP_ADMIN_USR=mlongo >> srcs/.env; \
+	echo WP_ADMIN_PWD=1234 >> srcs/.env; \
+	echo WP_ADMIN_EMAIL=manuelelng03@gmail.com >> srcs/.env; \
+	echo WP_USR=mlongo2 >> srcs/.env; \
+	echo WP_EMAIL=mlongo@student.42roma.it >> srcs/.env; \
+	echo WP_PWD=123 >> srcs/.env; \
+	echo db_name=maria >> srcs/.env; \
+	echo db_user=ss >> srcs/.env; \
+	echo db_pwd=tt >> srcs/.env; \
+	echo SQL_ROOT_PASSWORD=1234 >> srcs/.env; \
 	fi
-	if [! -d /home/$USER/data]; then \
+	@if [! -d /home/$USER/data]; then \
 	mkdir /home/$USER/data/wordpress; \
 	mkdir /home/$USER/data/mariadb; \
 	fi
