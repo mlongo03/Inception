@@ -9,4 +9,11 @@ sed -i -r "s#second#$KEYS_#g"    /etc/nginx/nginx.conf
 
 sed -i -r "s#third#$DOMAIN_NAME#g"    /etc/nginx/nginx.conf
 
+
+chmod 755 /var/www/wordpress/
+chown -R www-data:www-data /var/www/wordpress/
+
+chmod 755 /var/www/adminer/
+chown -R www-data:www-data /var/www/adminer/
+
 nginx -g "daemon off;"

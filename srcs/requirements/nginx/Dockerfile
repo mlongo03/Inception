@@ -1,4 +1,3 @@
-# FROM debian:buster
 FROM debian:bullseye
 
 RUN apt update \
@@ -8,8 +7,8 @@ RUN apt update \
  && mkdir -p /etc/nginx/ssl \
  && apt install openssl -y \
  && mkdir -p /var/run/nginx \
- && chmod 755 /var/www/html \
- && chown -R www-data:www-data /var/www/html
+ && chmod 755 /var/www/ \
+ && chown -R www-data:www-data /var/www/
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY tools/nginx.sh /

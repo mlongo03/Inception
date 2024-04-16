@@ -10,6 +10,7 @@ reboot : down up
 vclean: down
 	@sudo rm -rf /home/manuele/data/wordpress/*
 	@sudo rm -rf /home/manuele/data/mariadb/*
+	@sudo rm -rf /home/manuele/data/adminer/*
 
 up:
 	@if [ ! -f srcs/.env ]; then \
@@ -28,18 +29,22 @@ up:
 	echo db_user=ss >> srcs/.env; \
 	echo db_pwd=tt >> srcs/.env; \
 	echo SQL_ROOT_PASSWORD=1234 >> srcs/.env; \
+	echo USERDOCKER=${USER} >> srcs/.env; \
 	fi
-	echo USERDOCKER=${USER} >> srcs/.env
 	@if [ ! -d /home/${USER}/data ]; then \
 	mkdir /home/${USER}/data; \
 	mkdir /home/${USER}/data/wordpress; \
 	mkdir /home/${USER}/data/mariadb; \
+	mkdir /home/${USER}/data/adminer; \
 	fi
 	@if [ ! -d /home/${USER}/data/wordpress ]; then \
 	mkdir /home/${USER}/data/wordpress; \
 	fi
 	@if [ ! -d /home/${USER}/data/mariadb ]; then \
 	mkdir /home/${USER}/data/mariadb; \
+	fi
+	@if [ ! -d /home/${USER}/data/adminer ]; then \
+	mkdir /home/${USER}/data/adminer; \
 	fi
 	@sudo docker-compose -f srcs/docker-compose.yml up -d --build
 
@@ -68,3 +73,5 @@ logs:
 	@sudo docker logs nginx
 	@echo "\nlogs of mariadb\n--------------------------------------------\n"
 	@sudo docker logs mariadb
+	@echo "\nlogs of adminer\n--------------------------------------------\n"
+	@sudo docker logs adminer

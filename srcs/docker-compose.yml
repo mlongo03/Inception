@@ -19,7 +19,7 @@ services:
     container_name: wordpress
     env_file: .env
     volumes:
-      - wordpress:/var/www/
+      - wordpress:/var/www/wordpress
     networks:
       - inception
     build:
@@ -34,11 +34,13 @@ services:
   nginx:
     container_name: nginx
     volumes:
-      - wordpress:/var/www/
+      - wordpress:/var/www/wordpress
+      - adminer:/var/www/adminer
     networks:
       - inception
     depends_on:
       - wordpress
+      - amdiner
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
@@ -46,6 +48,22 @@ services:
     ports:
       - "443:443"
     restart: on-failure
+
+  amdiner:
+    container_name: adminer
+    env_file: .env
+    volumes:
+      - adminer:/var/www/adminer
+    networks:
+      - inception
+    build:
+      context: requirements/bonus/adminer
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+    restart: on-failure
+    expose:
+      - "9000"
 
 volumes:
   wordpress:
@@ -60,6 +78,12 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/$USERDOCKER/data/mariadb'
+  adminer:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/$USERDOCKER/data/adminer'
 
 networks:
   inception:
