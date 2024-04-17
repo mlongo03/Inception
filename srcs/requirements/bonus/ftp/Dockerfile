@@ -2,15 +2,13 @@ FROM debian:bullseye
 
 RUN apt update \
  && apt upgrade -y \
- && apt-get install mariadb-server -y \
- && mkdir /run/mysqld \
- && chown -R mysql:mysql /run/mysqld \
  && apt install vim -y \
- && apt install curl -y
+ && apt install curl -y \
+ && apt-get -y install wget \
+ && apt install vsftpd -y
 
-COPY conf/50-server.cnf	/etc/mysql/mariadb.conf.d/50-server.cnf
-COPY tools/mariadb.sh	/
+COPY tools/ftp.sh /
 
-RUN chmod +x /mariadb.sh
+RUN chmod +x /ftp.sh
 
-CMD [ "/mariadb.sh" ]
+CMD [ "/ftp.sh" ]

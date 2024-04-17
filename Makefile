@@ -29,6 +29,8 @@ up:
 	echo db_user=ss >> srcs/.env; \
 	echo db_pwd=tt >> srcs/.env; \
 	echo SQL_ROOT_PASSWORD=1234 >> srcs/.env; \
+	echo ftp_user=daje >> srcs/.env; \
+	echo ftp_pwd=roma >> srcs/.env; \
 	echo USERDOCKER=${USER} >> srcs/.env; \
 	fi
 	@if [ ! -d /home/${USER}/data ]; then \
@@ -75,3 +77,7 @@ logs:
 	@sudo docker logs mariadb
 	@echo "\nlogs of adminer\n--------------------------------------------\n"
 	@sudo docker logs adminer
+	@echo "\nlogs of redis\n--------------------------------------------\n"
+	@sudo docker logs redis
+	@echo "\nlogs of ftp\n--------------------------------------------\n"
+	@sudo docker logs ftp
