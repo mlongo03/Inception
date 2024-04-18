@@ -81,6 +81,8 @@ logs:
 	@sudo docker logs redis
 	@echo "\nlogs of ftp\n--------------------------------------------\n"
 	@sudo docker logs ftp
+	@echo "\nlogs of cadvisor\n--------------------------------------------\n"
+	@sudo docker logs cadvisor
 
 ipaddress:
 	sudo docker inspect ftp | grep IPAddress

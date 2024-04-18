@@ -2,9 +2,6 @@
 
 service vsftpd start
 
-# Add the USER, change his password and declare him as the owner of wordpress folder and all subfolders
-
-# adduser --disabled-password --force-badname $ftp_user
 adduser --disabled-password --gecos "" $ftp_user
 
 echo "$ftp_user:$ftp_pwd" | /usr/sbin/chpasswd &> /dev/null
