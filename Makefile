@@ -81,3 +81,6 @@ logs:
 	@sudo docker logs redis
 	@echo "\nlogs of ftp\n--------------------------------------------\n"
 	@sudo docker logs ftp
+
+ipaddress:
+	sudo docker inspect ftp | grep IPAddress
