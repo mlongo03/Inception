@@ -37,11 +37,13 @@ services:
     volumes:
       - wordpress:/var/www/wordpress
       - adminer:/var/www/adminer
+      - website:/var/www/website
     networks:
       - inception
     depends_on:
       - wordpress
       - amdiner
+      - website
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
@@ -115,6 +117,18 @@ services:
     ports:
       - "8080:8080"
 
+  website:
+    container_name: website
+    env_file: .env
+    volumes:
+      - website:/var/www/website
+    networks:
+      - inception
+    build:
+      context: requirements/bonus/website
+      dockerfile: Dockerfile
+    restart: on-failure
+
 volumes:
   wordpress:
     driver: local
@@ -134,6 +148,12 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/$USERDOCKER/data/adminer'
+  website:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/$USERDOCKER/data/website'
 
 networks:
   inception:

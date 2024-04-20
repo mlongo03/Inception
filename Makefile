@@ -11,6 +11,7 @@ vclean: down
 	@sudo rm -rf /home/manuele/data/wordpress/*
 	@sudo rm -rf /home/manuele/data/mariadb/*
 	@sudo rm -rf /home/manuele/data/adminer/*
+	@sudo rm -rf /home/manuele/data/website/*
 
 up:
 	@if [ ! -f srcs/.env ]; then \
@@ -38,6 +39,7 @@ up:
 	mkdir /home/${USER}/data/wordpress; \
 	mkdir /home/${USER}/data/mariadb; \
 	mkdir /home/${USER}/data/adminer; \
+	mkdir /home/${USER}/data/website; \
 	fi
 	@if [ ! -d /home/${USER}/data/wordpress ]; then \
 	mkdir /home/${USER}/data/wordpress; \
@@ -47,6 +49,9 @@ up:
 	fi
 	@if [ ! -d /home/${USER}/data/adminer ]; then \
 	mkdir /home/${USER}/data/adminer; \
+	fi
+	@if [ ! -d /home/${USER}/data/website ]; then \
+	mkdir /home/${USER}/data/website; \
 	fi
 	@sudo docker-compose -f srcs/docker-compose.yml up -d --build
 
@@ -83,6 +88,8 @@ logs:
 	@sudo docker logs ftp
 	@echo "\nlogs of cadvisor\n--------------------------------------------\n"
 	@sudo docker logs cadvisor
+	@echo "\nlogs of website\n--------------------------------------------\n"
+	@sudo docker logs website
 
 ipaddress:
 	sudo docker inspect ftp | grep IPAddress
