@@ -42,6 +42,7 @@ Inception is a comprehensive Docker containerization project designed to masteri
 1. Clone the repository.
 2. go inside the repository.
 3. Run make on terminal.
+
 make will initially create a dummy .env file with random credentials for containers, you have to edit with your credentials, then
 it will creates folders needed from the containers on the host machine in order to create volumes and finally it will run
 docker-compose up to actually create and start containers
